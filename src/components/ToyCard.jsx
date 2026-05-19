@@ -11,13 +11,13 @@ function ToyCard({ toy, onLike, onDelete }) {
         />
       </div>
       <h2>{toy.name}</h2>
-      <p>❤️ {toy.likes} likes</p>
+      <p>{toy.likes} Likes </p>
       <div className="card-actions">
         <button className="like-btn" onClick={() => onLike(toy)}>
-          Like ❤
+          Like {"<3"}
         </button>
         <button className="del-btn" onClick={() => onDelete(toy.id)}>
-          Donate
+          Donate to GoodWill
         </button>
       </div>
     </div>
