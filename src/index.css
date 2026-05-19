@@ -1,102 +1,248 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: monospace;
+  padding: 0;
 }
 
+body {
+  font-family: monospace;
+  background: #f4f4f6;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
 #toy-header {
+  background: #3d52a0;
+  padding: 1.25rem 2rem;
   display: flex;
-  justify-content: center;
-  background: #515da2;
-  opacity: 0.8;
-  height: 7rem;
-  padding: 1rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 #toy-header img {
-  height: 6rem;
+  height: 48px;
   width: auto;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
 }
 
-#toy-collection {
-  margin: 2rem;
+/* ── Toolbar (button row) ── */
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
 }
 
-.card {
-  text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 15rem;
-  height: 25rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
-  box-shadow: 3px 4px #e04b52;
-}
-
-.toy-avatar {
-  justify-self: center;
-  height: 12rem;
-  width: auto;
+.buttonContainer::before {
+  content: "Your toy collection";
+  font-size: 13px;
+  color: #888;
 }
 
 button {
-  position: relative;
-  background-color: #e04b52;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #3d52a0;
+  color: white;
   border: none;
-  border-radius: 5px;
-  height: 3rem;
-  width: max-content;
-  color: whitesmoke;
-  font-size: 18px;
-  justify-self: center;
-}
-
-.buttonContainer {
-  text-align: center;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
 }
 
 button:hover {
-  background-color: whitesmoke;
-  border: #e04b52 solid 1px;
-  color: #e04b52;
+  background: #2e3f7f;
+  color: white;
+  border: none;
+  transform: translateY(-1px);
 }
 
-.container {
-  padding: 1rem;
-  width: stretch;
+button:active {
+  transform: scale(0.97);
+}
+
+/* ── Toy grid ── */
+#toy-collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  padding: 0 2rem 2rem;
+}
+
+/* ── Toy card ── */
+.card {
+  background: white;
+  border: 1px solid #e8e8ec;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-align: left;
+  width: auto;
   height: auto;
-  background: #515da2;
-  opacity: 0.8;
+  box-shadow: none;
+  margin: 0;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-img-wrapper {
+  background: #f7f7fa;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.toy-avatar {
+  max-height: 130px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.card h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  padding: 12px 14px 4px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #888;
+  padding: 0 14px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 14px 14px;
+  margin-top: auto;
+}
+
+/* Like button */
+.like-btn {
+  flex: 1;
+  background: #eaf3de;
+  color: #3b6d11;
+  border: 1px solid #c0dd97;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.like-btn:hover {
+  background: #d4eab8;
+  color: #3b6d11;
+  border: 1px solid #c0dd97;
+  transform: translateY(-1px);
+}
+
+/* Donate button */
+.del-btn {
+  flex: 1;
+  background: #fcebeb;
+  color: #a32d2d;
+  border: 1px solid #f7c1c1;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-family: monospace;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.del-btn:hover {
+  background: #f7d0d0;
+  color: #a32d2d;
+  border: 1px solid #f7c1c1;
+  transform: translateY(-1px);
+}
+
+/* ── Add Toy Form ── */
+.container {
+  background: #3d52a0;
+  padding: 1.25rem 2rem;
 }
 
 .add-toy-form {
-  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  max-width: 700px;
 }
 
-.submit {
-  position: relative;
-  background-color: #e04b52;
-  border-radius: 5px;
-  height: 2rem;
-  width: max-content;
-  color: whitesmoke;
-  font-size: 18px;
-  justify-self: center;
-  font-family: monospace;
-  margin: 3px;
-}
-
-.submit:hover {
-  background-color: whitesmoke;
-  border: #e04b52 solid 1px;
-  color: #e04b52;
+.add-toy-form h3 {
+  width: 100%;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
 .input-text {
-  border-radius: 5px;
-  height: 2rem;
-  width: 60%;
-  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 12px;
+  font-size: 14px;
   font-family: monospace;
-  margin: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  flex: 1;
+  min-width: 160px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input-text::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.input-text:focus {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.submit {
+  background: white;
+  color: #3d52a0;
+  border: none;
+  border-radius: 8px;
+  height: 38px;
+  padding: 0 18px;
+  font-size: 14px;
+  font-family: monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.submit:hover {
+  background: #e8ecff;
+  color: #3d52a0;
+  border: none;
+  transform: translateY(-1px);
 }
